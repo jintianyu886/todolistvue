@@ -2,6 +2,8 @@
 
 Vue 3 + TypeScript + Vite 前端，连接 [demo-backend](https://github.com/jty0420/demo-backend) API。
 
+仓库：https://github.com/jty0420/todolistvue
+
 ## 功能
 
 - 增删改查、完成标记
