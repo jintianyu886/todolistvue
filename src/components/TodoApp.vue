@@ -2,11 +2,22 @@
 import { computed, ref } from "vue";
 import { useTheme } from "@/composables/useTheme";
 import { useTodos } from "@/composables/useTodos";
-import type { Filter } from "@/types/todo";
+import type { Filter, TodoInput } from "@/types/todo";
+import AIAssistant from "./AIAssistant.vue";
 import FilterBar from "./FilterBar.vue";
 import ThemeToggle from "./ThemeToggle.vue";
 import TodoForm from "./TodoForm.vue";
 import TodoList from "./TodoList.vue";
+import WeatherWidget from "./WeatherWidget.vue";
+
+function handleAddTodoFromAI(title: string) {
+  const input: TodoInput = {
+    title,
+    priority: "medium",
+    dueDate: null,
+  };
+  addTodo(input);
+}
 
 const filter = ref<Filter>("all");
 const { theme, mounted, toggleTheme } = useTheme();
@@ -96,6 +107,9 @@ const subtitle = computed(() => {
           清除 {{ stats.completed }} 项已完成
         </button>
       </div>
+      
+      <WeatherWidget />
+      <AIAssistant @add-todo="handleAddTodoFromAI" />
     </section>
 
     <footer class="mt-12 text-center text-xs text-zinc-400 dark:text-zinc-600">
